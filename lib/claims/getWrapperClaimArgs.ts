@@ -1,5 +1,5 @@
 import { Address } from 'thirdweb'
-import { CHAIN_ID, DROP_ADDRESS, ERC1155_LAZY_PAYABLE_CLAIM } from '@/lib/consts'
+import { CHAIN_ID, DROP_ADDRESS, ERC1155_LAZY_PAYABLE_CLAIM, INSTANCE_ID } from '@/lib/consts'
 import {
   QUOTER_ADDRESSES,
   SWAP_ROUTER_02_ADDRESSES,
@@ -24,7 +24,7 @@ const getWrapperClaimArgs = (
     {
       extensionContract: ERC1155_LAZY_PAYABLE_CLAIM,
       creatorContractAddress: DROP_ADDRESS,
-      instanceId: BigInt(claimInfo.instanceId),
+      instanceId: INSTANCE_ID,
       mintCount: claimInfo.amount,
       mintIndices: [] as number[],
       merkleProofs: [[]] as readonly (readonly `0x${string}`[])[],

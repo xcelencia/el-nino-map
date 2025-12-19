@@ -1,6 +1,12 @@
 import { prepareContractCall, sendTransaction } from 'thirdweb'
 import useClaimInfo from './useClaimInfo'
-import { CHAIN, DROP_ADDRESS, ERC1155_LAZY_PAYABLE_CLAIM, MANIFOLD_FEE } from '@/lib/consts'
+import {
+  CHAIN,
+  DROP_ADDRESS,
+  ERC1155_LAZY_PAYABLE_CLAIM,
+  INSTANCE_ID,
+  MANIFOLD_FEE,
+} from '@/lib/consts'
 import { extensionContract } from '@/lib/contracts'
 import { useActiveAccount } from 'thirdweb/react'
 import { useAccount, useWriteContract } from 'wagmi'
@@ -18,7 +24,7 @@ const useUsdcClaim = () => {
     if (!activeAccount?.address) return
     const claimArgs = [
       DROP_ADDRESS,
-      BigInt(claimInfo.instanceId),
+      INSTANCE_ID,
       claimInfo.amount,
       [],
       [[]],

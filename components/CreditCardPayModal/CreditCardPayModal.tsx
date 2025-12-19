@@ -10,6 +10,7 @@ import {
   ERC1155_LAZY_PAYABLE_CLAIM,
   MANIFOLD_FEE,
   FALLBACK_WRAPPER_SWAP_AMOUNT,
+  INSTANCE_ID,
 } from '@/lib/consts'
 import { usePurchaseProvider } from '@/providers/PurchaseProvider'
 import {
@@ -25,7 +26,7 @@ const CreditCardPayModal = ({ onClose }: { onClose: () => void }) => {
   const activeAccount = useActiveAccount()
   const address = activeAccount?.address
   const { order } = useCrossmintCheckout()
-  const { amount, instanceId, erc20Address } = usePurchaseProvider()
+  const { amount, erc20Address } = usePurchaseProvider()
   const { push } = useRouter()
   useEffect(() => {
     const fetchOrder = async () => {
@@ -54,7 +55,7 @@ const CreditCardPayModal = ({ onClose }: { onClose: () => void }) => {
                 mintData: {
                   extensionContract: ERC1155_LAZY_PAYABLE_CLAIM,
                   creatorContractAddress: DROP_ADDRESS,
-                  instanceId,
+                  instanceId: INSTANCE_ID.toString(),
                   mintCount: amount,
                   mintIndices: [],
                   merkleProofs: [[]],

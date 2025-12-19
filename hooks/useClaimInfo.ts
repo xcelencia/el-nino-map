@@ -1,4 +1,4 @@
-import { DROP_ADDRESS } from '@/lib/consts'
+import { DROP_ADDRESS, INSTANCE_ID } from '@/lib/consts'
 import { readContract } from 'thirdweb'
 import { useEffect, useState } from 'react'
 import { type Address, zeroAddress } from 'viem'
@@ -20,14 +20,7 @@ const fetchMetadata = async (uri: string) => {
   return data
 }
 
-const getLatestInstanceId = async () => {
-  const response = await fetch('/api/dune/instanceId')
-  const data = await response.json()
-  return data
-}
-
 const useClaimInfo = () => {
-  const [instanceId, setInstanceId] = useState(0)
   const [price, setPrice] = useState(BigInt(0))
   const [decimal, setDecimal] = useState(18)
   const [erc20Address, setErc20Address] = useState<Address>(zeroAddress)
@@ -38,14 +31,11 @@ const useClaimInfo = () => {
 
   useEffect(() => {
     const init = async () => {
-      const instanceId = await getLatestInstanceId()
-      setInstanceId(instanceId)
-
       const response = await readContract({
         contract: extensionContract,
         method:
           'function getClaim(address creatorContractAddress, uint256 instanceId) view returns ((uint32 total, uint32 totalMax, uint32 walletMax, uint48 startDate, uint48 endDate, uint8 storageProtocol, bytes32 merkleRoot, string location, uint256 tokenId, uint256 cost, address paymentReceiver, address erc20, address signingAddress) claim)',
-        params: [DROP_ADDRESS, instanceId],
+        params: [DROP_ADDRESS, INSTANCE_ID],
       })
 
       const tokenId = response.tokenId
@@ -89,7 +79,6 @@ const useClaimInfo = () => {
     decimal,
     erc20Address,
     isLoading,
-    instanceId,
     metadata,
     amount,
     setAmount,
