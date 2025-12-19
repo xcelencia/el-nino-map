@@ -9,7 +9,7 @@ export const CHAIN_ID = CHAIN.id
 
 export const DROP_ADDRESS = IS_TESTNET
   ? '0x33f41850b02cb3886f9dbec40c2531933a0b5e00' // sepolia testnet
-  : '0x64895cca15bae3ffc5adc5492aa841d000715ea7' // base mainnet
+  : '0xEaB564Ad61777C6d50744a97088da545A0BcE8dE' // base mainnet
 
 export const ADMIN_WALLETS = [
   '0x089036a0835C6cF82e7fC42e9e95DfE05e110c81',
@@ -25,10 +25,10 @@ export enum WALLET_STATUS {
   ENOUGH_ERC20,
   INSUFFICIENT_BALANCE,
 }
-export const INSTANCE_ID = IS_TESTNET ? BigInt(4244961520) : BigInt(4277512432)
+export const INSTANCE_ID = IS_TESTNET ? BigInt(4244961520) : BigInt(4111237360)
 export const ZORA_PRICE = '111000000000000'
 export const MANIFOLD_FEE = parseEther('0.0005')
-export const FALLBACK_WRAPPER_SWAP_AMOUNT = parseEther('0.003')
+export const FALLBACK_WRAPPER_SWAP_AMOUNT = parseEther('0.0004')
 export const SUBSCRIPTION_CROSSMINT_COLLECTION_ID = 'ca6b9d5c-1949-48c4-8981-10cd329e7455'
 export const CROSSMINT_COLLECTION_ID = '4a88b4d6-73fe-4f19-8d01-57ec8dfd4ccf'
 export const WRAPPER_ADAPTER = '0x82A300a5753e69e3999F33DEC7FBD9a3024Bc827'

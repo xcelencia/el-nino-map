@@ -5,7 +5,7 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint --dir . --fix",
-    "format": "prettier --write \"**/*.{js,jsx,json,ts,tsx,md,mdx,yml,yaml}\" && yarn lint",
+    "format": "prettier --write \"**/*.{js,jsx,json,ts,tsx,md,mdx,yml,yaml}\" && pnpm lint",
     "start": "next start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
