@@ -25,15 +25,16 @@ jobs:
           node-version: 20
           registry-url: 'https://npm.pkg.github.com'
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
 
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile --prefer-offline
+        run: pnpm install --frozen-lockfile
 
       - name: Fix Formatting
-        run: yarn format
+        run: pnpm format
 
       - name: Check linting
-        run: yarn lint
+        run: pnpm lint
