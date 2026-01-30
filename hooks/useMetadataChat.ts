@@ -1,21 +1,46 @@
 'use client'
 
+import { useMemo, useState } from 'react'
 import { useChat } from '@ai-sdk/react'
+import { DefaultChatTransport } from 'ai'
+
+const generateUUID = () => crypto.randomUUID()
 
 const useMetadataChat = () => {
-  const { messages, input, setInput, handleSubmit, status, append } = useChat({
-    api: 'https://chat.recoupable.com/api/chat',
-    body: {
-      artistId: 'eaa2fb07-5a4b-4710-9c0d-4a74db3612d2',
-      accountId: '46cd41de-88a8-4839-b03b-264a8566cccf',
-    },
+  const [input, setInput] = useState('')
+
+  const transport = useMemo(() => {
+    return new DefaultChatTransport({
+      api: 'https://recoup-api.vercel.app/api/chat',
+      headers: {
+        'x-api-key': process.env.NEXT_PUBLIC_RECOUP_API_KEY || '',
+      },
+    })
+  }, [])
+
+  const { messages, status, sendMessage } = useChat({
+    transport,
+    generateId: generateUUID,
   })
 
+  const chatRequestOptions = useMemo(
+    () => ({
+      body: {
+        artistId: 'eaa2fb07-5a4b-4710-9c0d-4a74db3612d2',
+      },
+    }),
+    [],
+  )
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (!input.trim()) return
+    sendMessage({ text: input }, chatRequestOptions)
+    setInput('')
+  }
+
   const handlePromptSelect = (prompt: string) => {
-    append({
-      role: 'user',
-      content: prompt,
-    })
+    sendMessage({ text: prompt }, chatRequestOptions)
   }
 
   return {
