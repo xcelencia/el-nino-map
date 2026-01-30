@@ -9,3 +9,4 @@ yarn.lock
 package-lock.json
 supabase/config.toml
 .vercel
+.env*.local
