@@ -18,7 +18,7 @@ const useMetadataChat = () => {
     })
   }, [])
 
-  const { messages, status, sendMessage, setMessages } = useChat({
+  const { messages, status, sendMessage } = useChat({
     transport,
     generateId: generateUUID,
   })
