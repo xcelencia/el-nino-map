@@ -4,10 +4,12 @@ import { useChat } from '@ai-sdk/react'
 
 const useMetadataChat = () => {
   const { messages, input, setInput, handleSubmit, status, append } = useChat({
-    api: 'https://chat.recoupable.com/api/chat',
+    api: 'https://recoup-api.vercel.app/api/chat',
+    headers: {
+      'x-api-key': process.env.NEXT_PUBLIC_RECOUP_API_KEY || '',
+    },
     body: {
       artistId: 'eaa2fb07-5a4b-4710-9c0d-4a74db3612d2',
-      accountId: '46cd41de-88a8-4839-b03b-264a8566cccf',
     },
   })
 
