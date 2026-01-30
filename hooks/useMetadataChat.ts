@@ -4,6 +4,8 @@ import { useMemo, useState } from 'react'
 import { useChat } from '@ai-sdk/react'
 import { DefaultChatTransport } from 'ai'
 
+const generateUUID = () => crypto.randomUUID()
+
 const useMetadataChat = () => {
   const [input, setInput] = useState('')
 
@@ -18,6 +20,7 @@ const useMetadataChat = () => {
 
   const { messages, status, sendMessage, setMessages } = useChat({
     transport,
+    generateId: generateUUID,
   })
 
   const chatRequestOptions = useMemo(
