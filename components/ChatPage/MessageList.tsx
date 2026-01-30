@@ -1,12 +1,12 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { type Message } from '@ai-sdk/react'
+import { type UIMessage } from 'ai'
 import ChatMarkdown from './ChatMarkdown'
 import Thinking from './Thinking'
 
 interface MessageListProps {
-  messages: Message[]
+  messages: UIMessage[]
   status?: string
 }
 
@@ -33,23 +33,7 @@ const MessageList = ({ messages, status }: MessageListProps) => {
                 }
                 return null
               })}
-              {/* Fallback to content if parts is empty */}
-              {(!message.parts || message.parts.length === 0) && message.content && (
-                <ChatMarkdown content={message.content} className="text-inherit" />
-              )}
             </div>
-            <p
-              className={`text-xs mt-1 ${
-                message.role === 'user' ? 'text-gray-300' : 'text-gray-500'
-              }`}
-            >
-              {message.createdAt
-                ? new Date(message.createdAt).toLocaleTimeString([], {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                  })
-                : ''}
-            </p>
           </div>
         </div>
       ))}

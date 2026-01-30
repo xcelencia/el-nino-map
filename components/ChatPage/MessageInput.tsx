@@ -1,31 +1,29 @@
 'use client'
 
+import { useRef } from 'react'
+
 interface MessageInputProps {
   value: string
   onChange: (value: string) => void
-  onSubmit: (event?: { preventDefault?: () => void }) => void
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
   status?: string
 }
 
 const MessageInput = ({ value, onChange, onSubmit, status }: MessageInputProps) => {
+  const formRef = useRef<HTMLFormElement>(null)
   const isLoading = status === 'submitted' || status === 'streaming'
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    onSubmit(e)
-  }
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
-      onSubmit()
+      formRef.current?.requestSubmit()
     }
   }
 
   return (
     <div className="bg-white border-t border-gray-200 p-6">
       <div className="max-w-2xl mx-auto">
-        <form onSubmit={handleSubmit} className="flex space-x-4">
+        <form ref={formRef} onSubmit={onSubmit} className="flex space-x-4">
           <input
             type="text"
             value={value}

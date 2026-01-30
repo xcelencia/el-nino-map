@@ -14,7 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "@actions/cache": "^4.0.0",
-    "@ai-sdk/react": "^1.2.11",
+    "@ai-sdk/react": "3.0.0-beta.99",
     "@airstack/airstack-react": "^0.6.4",
     "@coinbase/cdp-sdk": "^1.38.4",
     "@coinbase/coinbase-sdk": "^0.25.0",
@@ -37,6 +37,7 @@
     "@vercel/og": "^0.6.2",
     "@zoralabs/protocol-deployments": "^0.1.13",
     "@zoralabs/protocol-sdk": "^0.9.6",
+    "ai": "6.0.0-beta.99",
     "cheerio": "^1.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
