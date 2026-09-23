@@ -1,6 +1,16 @@
 /* eslint-disable no-param-reassign */
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async headers() {
+    return [
+      {
+        source: '/(images|fonts)/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=604800, stale-while-revalidate=86400' },
+        ],
+      },
+    ]
+  },
   images: {
     remotePatterns: [
       {
@@ -38,9 +48,6 @@ const nextConfig = {
       },
       {
         hostname: 'magic.decentralized-content.com',
-      },
-      {
-        hostname: 'cdn.peekalink.io',
       },
     ],
   },

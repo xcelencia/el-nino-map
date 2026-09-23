@@ -10,3 +10,4 @@ package-lock.json
 supabase/config.toml
 .vercel
 .env*.local
+tsconfig.tsbuildinfo

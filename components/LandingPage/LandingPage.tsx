@@ -1,9 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import getLoginEvents from '@/lib/stack/getLoginPoints'
-import trackLoginPoints from '@/lib/stack/trackLoginPoints'
-import { useActiveAccount } from 'thirdweb/react'
+import { useState } from 'react'
 import Modals from './Modals'
 import { useMapProvider } from '@/providers/MapProvider'
 import Tooltip from './Tooltip'
@@ -11,37 +8,19 @@ import getTooltipText from '@/lib/getTooltipText'
 import calculateScaledSize from '@/lib/calculateScaledSize'
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
 import ImageMapper from 'react-img-mapper'
-import map from '@/lib/image-map.json'
+import useMapImage from '@/hooks/useMapImage'
 import { useTipProvider } from '@/providers/TipProvider'
-import Preview from './Preview'
-import { PULSATING_COLORS } from '@/lib/consts'
-import { Address } from 'viem'
+import { BACKGROUND_PLACEHOLDER, PULSATING_COLORS } from '@/lib/consts'
 
 const LandingPage = () => {
   const { isVisibleToolTip, tooltipX, tooltipY, tooltipId, width, height, imageRef } =
     useTipProvider()
 
-  const { clickMap, setMapperKey, handleMouseMove, area } = useMapProvider()
-  const activeAccount = useActiveAccount()
-  const address = activeAccount?.address as Address
+  const { clickMap, handleMouseMove, area } = useMapProvider()
+  const mapImage = useMapImage()
   const [pulsatingCenter, setPulsatingCenter] = useState<{ x: number; y: number } | undefined>(
     undefined,
   )
-  useEffect(() => {
-    const init = async () => {
-      if (address) {
-        const { events, error } = await getLoginEvents(address as Address)
-        if (!error) return
-        if (!events.length) return
-        await trackLoginPoints(address)
-        setMapperKey(Math.floor(Math.random() * 1000))
-      }
-    }
-    if (!address) return
-    init()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [address])
-
   const handleMoseMoveWithPosition = (e: React.MouseEvent<HTMLDivElement>) => {
     const centerCoords = handleMouseMove(e)
     if (centerCoords) {
@@ -52,18 +31,25 @@ const LandingPage = () => {
   }
   return (
     <div id="container">
-      <TransformWrapper initialScale={1.1} centerOnInit>
+      <TransformWrapper
+        initialScale={1.1}
+        centerOnInit
+        onZoom={(ref) => mapImage.handleZoom(ref.state.scale)}
+      >
         <TransformComponent
           contentProps={{
             onMouseMove: handleMoseMoveWithPosition,
             onClick: clickMap,
           }}
-          wrapperClass={`!w-screen !h-screen !overflow-hidden bg-[url('/images/background.png')] bg-cover bg-center`}
+          wrapperClass="!w-screen !h-screen !overflow-hidden bg-[#151264] bg-cover bg-center"
+          wrapperStyle={{
+            backgroundImage: `url('/images/background.webp'), url('${BACKGROUND_PLACEHOLDER}')`,
+          }}
         >
           <div ref={imageRef} className="size-full relative">
             <ImageMapper
-              src="/images/xcelencia-web-elements_only.png"
-              map={map}
+              src={mapImage.src}
+              map={mapImage.map}
               responsive
               parentWidth={calculateScaledSize(width, height).width}
             />
@@ -83,7 +69,6 @@ const LandingPage = () => {
       {isVisibleToolTip && tooltipId && (
         <Tooltip text={getTooltipText(tooltipId as string)} x={tooltipX} y={tooltipY} />
       )}
-      <Preview />
       <Modals />
     </div>
   )

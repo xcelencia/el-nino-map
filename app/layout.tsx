@@ -1,10 +1,8 @@
 import '@/styles/globals.css'
 import 'react-toastify/dist/ReactToastify.css'
-import '@coinbase/onchainkit/styles.css'
 import { Analytics } from '@vercel/analytics/react'
 import { ReactNode } from 'react'
 import { ToastContainer } from 'react-toastify'
-import Providers from '@/providers/Providers'
 import Header from '@/components/Header'
 
 export const viewport = {
@@ -15,13 +13,15 @@ export const viewport = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body>
-        <Providers>
-          <Header />
-          {children}
-          <ToastContainer />
-          <Analytics />
-        </Providers>
+      <head>
+        <link rel="preload" as="image" href="/images/map-elements-2560.webp" fetchPriority="high" />
+        <link rel="preload" as="image" href="/images/background.webp" />
+      </head>
+      <body className="bg-[#151264]">
+        <Header />
+        {children}
+        <ToastContainer />
+        <Analytics />
       </body>
     </html>
   )

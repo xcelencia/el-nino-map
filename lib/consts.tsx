@@ -1,79 +1,13 @@
-import { base, sepolia } from 'thirdweb/chains'
-import { encodeEventTopics, parseEther } from 'viem'
-import { zoraCreator1155FactoryImplABI } from '@zoralabs/protocol-deployments'
-import { erc1155LazyPayableClaimAbi } from './abi/erc_1155_lazy_payable'
-
-export const IS_TESTNET = process.env.NEXT_PUBLIC_TEST === 'true'
-export const CHAIN = IS_TESTNET ? sepolia : base
-export const CHAIN_ID = CHAIN.id
-
-export const DROP_ADDRESS = IS_TESTNET
-  ? '0x33f41850b02cb3886f9dbec40c2531933a0b5e00' // sepolia testnet
-  : '0xEaB564Ad61777C6d50744a97088da545A0BcE8dE' // base mainnet
-
-export const ADMIN_WALLETS = [
-  '0x089036a0835C6cF82e7fC42e9e95DfE05e110c81',
-  '0xcfBf34d385EA2d5Eb947063b67eA226dcDA3DC38',
-  '0xAF1452d289E22FbD0DEA9d5097353c72a90FAC33',
-]
-
-export const ERC721_LAZY_PAYABLE_CLAIM = '0x23aA05a271DEBFFAA3D75739aF5581f744b326E4'
-export const ERC1155_LAZY_PAYABLE_CLAIM = '0x26BBEA7803DcAc346D5F5f135b57Cf2c752A02bE'
-export enum WALLET_STATUS {
-  ENOUGH_ETH,
-  ENOUGH_USDC,
-  ENOUGH_ERC20,
-  INSUFFICIENT_BALANCE,
-}
-export const INSTANCE_ID = IS_TESTNET ? BigInt(4244961520) : BigInt(4111237360)
-export const ZORA_PRICE = '111000000000000'
-export const MANIFOLD_FEE = parseEther('0.0005')
-export const FALLBACK_WRAPPER_SWAP_AMOUNT = parseEther('0.0004')
-export const SUBSCRIPTION_CROSSMINT_COLLECTION_ID = 'ca6b9d5c-1949-48c4-8981-10cd329e7455'
-export const CROSSMINT_COLLECTION_ID = '4a88b4d6-73fe-4f19-8d01-57ec8dfd4ccf'
-export const WRAPPER_ADAPTER = '0x82A300a5753e69e3999F33DEC7FBD9a3024Bc827'
-export const STPV2_WRAPPER_ADAPTER = '0xF9A807061b1D82C72B396f5EE649C9dBc9426EC7'
-
-export const COMMENT = 'XCELENCIA - ERC6551 smart album 🪄'
-export const FIRST_SMART_WALLET_LOGIN_EVENT = 'first_smart_wallet_login'
-export const SHARE_MEMORY_EVENT = 'share_memories'
-export const SMART_WALLET_LOGIN_POINT = 11
-export const SHARE_MEMORY_POINT = 1
-export const POINT_SYSTEM_ID = 7080
-export const MINT_REFERRAL = '0x089036a0835C6cF82e7fC42e9e95DfE05e110c81'
-export const SUBSCRIPTION = IS_TESTNET
-  ? '0xFb31451F15fa9da497bD0F7A960e52Bb8512a4De'
-  : '0x3Fb6478F4f767993a5eD804608c7ABe31B73DeA9'
-export const STPV2 = '0x3Fb6478F4f767993a5eD804608c7ABe31B73DeA9'
-
-export const SETUP_NEW_CONTRACT_EVENT_SIGNATURE = encodeEventTopics({
-  abi: zoraCreator1155FactoryImplABI,
-  eventName: 'SetupNewContract',
-})[0]
-
-export const CLAIM_INITIALIZED_EVENT_SIGNATURE = encodeEventTopics({
-  abi: erc1155LazyPayableClaimAbi,
-  eventName: 'ClaimInitialized',
-})[0]
-
-export const xcelencia_eth = '0x089036a0835C6cF82e7fC42e9e95DfE05e110c81'
+export const APP_URL = 'https://maravilla.city'
 
 export const PULSATING_COLORS = {
-  mint: '#33d6bf',
   music: '#8f03e8',
-  leaderboard: '#9f7c9a',
-  metadata: '#54c9db',
   video: '#3ea6a0',
   merch: '#95929c',
   'live-show': '#578de4',
-  control: '#be0253',
   subscribe: '#d081d3',
-  memories: '#45b2c7',
   plannet: '#70c8f7',
 }
 
-// STRIPE
-export const STRIPE_PRICE_ID = 'price_1SGmG5AnyO5JNmHWpJ3M6oO5'
-
-export const STRIPE_ENDPOINT_SECRET = process.env.STRIPE_ENDPOINT_SECRET as string
-export const CDP_PAYMASTER_URL = process.env.CDP_PAYMASTER_KEY! as string
+// 48px blurred copy of background.png, shown until the full background loads
+export const BACKGROUND_PLACEHOLDER = 'data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAAAwBQCdASowABsAPrVMoEsnJC2hqqoBsBaJZACnFBZazhM5V68v+4tGdNEt/FgARtXfoAD+7objG27NmueBG/8Ey/xWn9K0t1PfdsrpzXZ0rzBcsqtuwCe2k3e7nw8k6At6XCnZ8sx7hroIRvklxzRUmzRxA7Wcjs01fcROwKpyUVdQQy5g4mthhxgAAA=='
