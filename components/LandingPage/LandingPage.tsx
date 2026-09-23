@@ -49,11 +49,12 @@ const LandingPage = () => {
           <div ref={imageRef} className="size-full relative">
             <ImageMapper
               src={mapImage.src}
-              map={mapImage.map}
+              name={mapImage.map.name}
+              areas={mapImage.map.areas}
               responsive
               parentWidth={calculateScaledSize(width, height).width}
             />
-            {pulsatingCenter && imageRef.current && (
+            {pulsatingCenter && (
               <div
                 className="absolute rounded-full animate-glow pointer-events-none opacity-[0.6] blur-[25px] w-[200px] h-[200px]"
                 style={{

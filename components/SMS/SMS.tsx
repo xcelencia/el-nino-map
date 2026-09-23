@@ -47,7 +47,6 @@ const SMS = () => {
               scrolling="no"
               src="https://embed.laylo.com?dropId=d6tew&color=FF7300&minimal=false&theme=dark"
               allow="web-share"
-              allowTransparency
               className="w-[100%]"
             />
           ) : (
