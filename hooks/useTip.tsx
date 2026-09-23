@@ -20,7 +20,7 @@ const useTip = () => {
 
   const showTooltip = (area: { id: string }, e: React.MouseEvent) => {
     setTooltipId(area.id)
-    setIsVisibleTooltip(area.id !== 'mint')
+    setIsVisibleTooltip(true)
     const x = e.clientX
     const y = e.clientY
 

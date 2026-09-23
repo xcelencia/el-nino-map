@@ -20,11 +20,11 @@ const OnBoarding = () => {
     {
       title: 'Cosmic Features',
       message:
-        'Every planet has its own vibe: Collect the latest drop in the center, watch videos, and subscribe for exclusive experiences. Pro tip: Spot the comet? That’s your chance to share your own memories.',
+        'Every planet has its own vibe: listen to music, watch videos, and subscribe for exclusive experiences.',
     },
     {
       title: 'Estas ready?',
-      message: 'Your journey starts now. Hit EXPLORE (top right) to sign in and unlock more.',
+      message: 'Your journey starts now. Click around the map to explore.',
     },
   ]
 

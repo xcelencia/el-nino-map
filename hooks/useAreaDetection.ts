@@ -1,8 +1,12 @@
 import { useCallback, useState } from 'react'
 import map from '@/lib/image-map.json'
 import { useTipProvider } from '@/providers/TipProvider'
+import getTooltipText from '@/lib/getTooltipText'
 
 const ORIGINAL_WIDTH = 8000
+
+// Only areas with tooltip text are interactive; others are ignored until they get a destination.
+const activeAreas = map.areas.filter((a) => getTooltipText(a.id) !== null)
 
 const useAreaDetection = () => {
   const { imageRef, closeTooltip, showTooltip } = useTipProvider()
@@ -18,7 +22,7 @@ const useAreaDetection = () => {
       const x = (e.clientX - rect.left) / scale
       const y = (e.clientY - rect.top) / scale
 
-      const area = map.areas.find((a) => {
+      const area = activeAreas.find((a) => {
         const coords = a.coords
         if (coords.length > 4) {
           let inside = false

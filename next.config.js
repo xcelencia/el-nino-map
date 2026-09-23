@@ -39,9 +39,6 @@ const nextConfig = {
       {
         hostname: 'magic.decentralized-content.com',
       },
-      {
-        hostname: 'cdn.peekalink.io',
-      },
     ],
   },
 }
