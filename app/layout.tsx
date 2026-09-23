@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel="preload" as="image" href="/images/map-elements.webp" fetchPriority="high" />
         <link rel="preload" as="image" href="/images/background.webp" />
       </head>
-      <body>
+      <body className="bg-[#151264]">
         <Header />
         {children}
         <ToastContainer />

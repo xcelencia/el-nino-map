@@ -36,7 +36,7 @@ const LandingPage = () => {
             onMouseMove: handleMoseMoveWithPosition,
             onClick: clickMap,
           }}
-          wrapperClass={`!w-screen !h-screen !overflow-hidden bg-[url('/images/background.webp')] bg-cover bg-center`}
+          wrapperClass={`!w-screen !h-screen !overflow-hidden bg-[#151264] bg-[url('/images/background.webp')] bg-cover bg-center`}
         >
           <div ref={imageRef} className="size-full relative">
             <ImageMapper
