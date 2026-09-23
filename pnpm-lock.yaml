@@ -30,8 +30,8 @@ importers:
         specifier: ^19.3.0
         version: 19.3.0(react@19.3.0)
       react-draggable:
-        specifier: ^4.4.6
-        version: 4.5.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: ^4.7.2
+        version: 4.7.2(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react-img-mapper:
         specifier: ^2.0.2
         version: 2.0.2(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -1819,8 +1819,8 @@ packages:
     peerDependencies:
       react: ^19.3.0
 
-  react-draggable@4.5.0:
-    resolution: {integrity: sha512-VC+HBLEZ0XJxnOxVAZsdRi8rD04Iz3SiiKOoYzamjylUcju/hP9np/aZdLHf/7WOD268WMoNJMvYfB5yAK45cw==}
+  react-draggable@4.7.2:
+    resolution: {integrity: sha512-pmqDx72EqhMGoJe/x42ZO2wJ9TIz7qJ5OPnFu6lVWWznEuJumlSjR+J0V4tNyDFhUo6dVvv56FeiTqN+arTgnw==}
     peerDependencies:
       react: '>= 16.3.0'
       react-dom: '>= 16.3.0'
@@ -4041,7 +4041,7 @@ snapshots:
       react: 19.3.0
       scheduler: 0.28.0
 
-  react-draggable@4.5.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
+  react-draggable@4.7.2(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
     dependencies:
       clsx: 2.1.1
       prop-types: 15.8.1

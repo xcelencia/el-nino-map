@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import Draggable from 'react-draggable'
 
 const DraggableModal = ({
@@ -7,6 +8,9 @@ const DraggableModal = ({
   children: React.ReactNode
   handleClose: () => void
 }) => {
+  // nodeRef avoids findDOMNode, which React 19 removed.
+  const nodeRef = useRef<HTMLDivElement>(null)
+
   return (
     <div className="fixed z-[9999] left-0 top-0 w-screen h-screen">
       <div className="relative w-full h-full flex justify-center items-center">
@@ -15,8 +19,14 @@ const DraggableModal = ({
           onClick={handleClose}
           onTouchStart={handleClose}
         />
-        <Draggable scale={1} bounds="parent" allowAnyClick={false} handle=".handle">
-          <div className="relative z-[1000]">
+        <Draggable
+          nodeRef={nodeRef}
+          scale={1}
+          bounds="parent"
+          allowAnyClick={false}
+          handle=".handle"
+        >
+          <div ref={nodeRef} className="relative z-[1000]">
             <div className="flex flex-col h-full w-full">
               <div className="h-[calc(100%-35px)] bg-transparent p-0 m-0 handle">{children}</div>
             </div>
