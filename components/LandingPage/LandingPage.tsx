@@ -10,7 +10,7 @@ import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
 import ImageMapper from 'react-img-mapper'
 import useMapImage from '@/hooks/useMapImage'
 import { useTipProvider } from '@/providers/TipProvider'
-import { PULSATING_COLORS } from '@/lib/consts'
+import { BACKGROUND_PLACEHOLDER, PULSATING_COLORS } from '@/lib/consts'
 
 const LandingPage = () => {
   const { isVisibleToolTip, tooltipX, tooltipY, tooltipId, width, height, imageRef } =
@@ -41,7 +41,10 @@ const LandingPage = () => {
             onMouseMove: handleMoseMoveWithPosition,
             onClick: clickMap,
           }}
-          wrapperClass={`!w-screen !h-screen !overflow-hidden bg-[#151264] bg-[url('/images/background.webp')] bg-cover bg-center`}
+          wrapperClass="!w-screen !h-screen !overflow-hidden bg-[#151264] bg-cover bg-center"
+          wrapperStyle={{
+            backgroundImage: `url('/images/background.webp'), url('${BACKGROUND_PLACEHOLDER}')`,
+          }}
         >
           <div ref={imageRef} className="size-full relative">
             <ImageMapper
