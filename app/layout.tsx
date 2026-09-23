@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
-        <link rel="preload" as="image" href="/images/map-elements.webp" fetchPriority="high" />
+        <link rel="preload" as="image" href="/images/map-elements-2560.webp" fetchPriority="high" />
         <link rel="preload" as="image" href="/images/background.webp" />
       </head>
       <body className="bg-[#151264]">

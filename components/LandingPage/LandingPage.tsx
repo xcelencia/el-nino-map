@@ -8,7 +8,7 @@ import getTooltipText from '@/lib/getTooltipText'
 import calculateScaledSize from '@/lib/calculateScaledSize'
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
 import ImageMapper from 'react-img-mapper'
-import map from '@/lib/image-map.json'
+import useMapImage from '@/hooks/useMapImage'
 import { useTipProvider } from '@/providers/TipProvider'
 import { PULSATING_COLORS } from '@/lib/consts'
 
@@ -17,6 +17,7 @@ const LandingPage = () => {
     useTipProvider()
 
   const { clickMap, handleMouseMove, area } = useMapProvider()
+  const mapImage = useMapImage()
   const [pulsatingCenter, setPulsatingCenter] = useState<{ x: number; y: number } | undefined>(
     undefined,
   )
@@ -30,7 +31,11 @@ const LandingPage = () => {
   }
   return (
     <div id="container">
-      <TransformWrapper initialScale={1.1} centerOnInit>
+      <TransformWrapper
+        initialScale={1.1}
+        centerOnInit
+        onZoom={(ref) => mapImage.handleZoom(ref.state.scale)}
+      >
         <TransformComponent
           contentProps={{
             onMouseMove: handleMoseMoveWithPosition,
@@ -40,8 +45,8 @@ const LandingPage = () => {
         >
           <div ref={imageRef} className="size-full relative">
             <ImageMapper
-              src="/images/map-elements.webp"
-              map={map}
+              src={mapImage.src}
+              map={mapImage.map}
               responsive
               parentWidth={calculateScaledSize(width, height).width}
             />
